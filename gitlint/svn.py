@@ -98,7 +98,7 @@ def modified_files(root, tracked_only=False, commit=None):
 def _modified_files_with_commit(root, commit):
     # Convert to unicode and split
     status_lines = subprocess.check_output(
-        ['svn', 'diff', '--summarize', '-c', commit, root]).decode('utf-8').split(os.linesep)
+        ['svn', 'diff', '--username', os.environ['GITLINT_SVN_USERNAME'], '--password', os.environ['GITLINT_SVN_PASSWORD'], '--summarize', '-c', commit, root]).decode('utf-8').split(os.linesep)
 
     modified_file_status = utils.filter_lines(
         status_lines,

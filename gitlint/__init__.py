@@ -54,6 +54,7 @@ import yaml
 
 import gitlint.git as git
 import gitlint.hg as hg
+import gitlint.svn as svn
 import gitlint.linters as linters
 from gitlint.version import __VERSION__
 
@@ -154,10 +155,10 @@ def get_vcs_root():
     """Returns the vcs module and the root of the repo.
 
     Returns:
-      A tuple containing the vcs module to use (git, hg) and the root of the
+      A tuple containing the vcs module to use (git, hg, svn) and the root of the
       repository. If no repository exisits then (None, None) is returned.
     """
-    for vcs in (git, hg):
+    for vcs in (git, hg, svn):
         repo_root = vcs.repository_root()
         if repo_root:
             return vcs, repo_root
